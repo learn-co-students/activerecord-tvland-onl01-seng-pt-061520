@@ -9,8 +9,8 @@ class Actor < ActiveRecord::Base
   def list_roles
     # And then, when we run peter.list_roles, we would get an Array containing a string with both the character and the show:
     # ['Tyrion Lannister - Game of Thrones']
-    self.characters.map do |character|
-      character
+    roles = self.characters.map do |character|
+      "#{character.name} - #{self.shows.find(character.show_id).name}"
     end
   end
 end
